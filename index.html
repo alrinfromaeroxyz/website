@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aeroxyz - AI Automation for Entrepreneurs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a0a0f;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00d4ff, #9d4edd, #ff006e);
+            filter: blur(1px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .orb1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .orb3 {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 60%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.6; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4ff, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #00d4ff, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3)); }
+            to { filter: drop-shadow(0 0 30px rgba(157, 78, 221, 0.5)); }
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 800px;
+            line-height: 1.6;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #00d4ff, #9d4edd);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(45deg, #ffffff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .service-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 20px;
+            padding: 60px;
+            margin: 80px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .step {
+            position: relative;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #00d4ff, #9d4edd);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 212, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0); }
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .step p {
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(157, 78, 221, 0.1));
+            border-radius: 20px;
+            padding: 80px 40px;
+            margin: 80px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 15, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: #00d4ff;
+        }
+
+        /* Consultation Form Styles */
+        .consultation-page {
+            min-height: 100vh;
+            padding: 120px 20px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 60px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ffffff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .consultation-form {
+            display: grid;
+            gap: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group option {
+            background: #1a1a1f;
+            color: #ffffff;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-btn {
+            padding: 18px 40px;
+            background: linear-gradient(45deg, #00d4ff, #9d4edd);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: #ffffff;
+            transform: translateX(-5px);
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(45deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1));
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            color: #22c55e;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            display: none;
+            background: linear-gradient(45deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.1));
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            color: #ef4444;
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .section {
+                padding: 60px 20px;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+            
+            nav {
+                padding: 15px 20px;
+            }
+            
+            .stats {
+                padding: 40px 20px;
+            }
+
+            .form-container {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-orb orb1"></div>
+        <div class="floating-orb orb2"></div>
+        <div class="floating-orb orb3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Aeroxyz</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Elevate Your Business with AI Automation</h1>
+            <p>Empowering budding entrepreneurs to scale faster, work smarter, and dominate their markets through cutting-edge AI solutions</p>
+            <a href="javascript:void(0)" class="cta-button" onclick="showConsultationForm(event)">Transform Your Business Today</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section fade-in">
+        <h2>Our AI-Powered Solutions</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3>Intelligent Automation</h3>
+                <p>Streamline repetitive tasks and processes with smart AI workflows that learn and adapt to your business needs.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Data Analytics & Insights</h3>
+                <p>Transform raw data into actionable insights that drive strategic decisions and accelerate growth.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💬</div>
+                <h3>AI Customer Support</h3>
+                <p>Deploy intelligent chatbots and support systems that provide 24/7 customer service excellence.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Marketing Automation</h3>
+                <p>Personalize customer experiences and optimize marketing campaigns with AI-driven strategies.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>Process Optimization</h3>
+                <p>Identify bottlenecks and optimize workflows to maximize efficiency and reduce operational costs.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3>Scalability Solutions</h3>
+                <p>Build systems that grow with your business, ensuring seamless expansion without operational chaos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section fade-in">
+        <div class="stats">
+            <div class="stat-item">
+                <h3>67%</h3>
+                <p>Average Time Savings</p>
+            </div>
+            <div class="stat-item">
+                <h3>85%</h3>
+                <p>Reduction in Human Error</p>
+            </div>
+            <div class="stat-item">
+                <h3>4.2x</h3>
+                <p>Faster Task Completion</p>
+            </div>
+            <div class="stat-item">
+                <h3>156%</h3>
+                <p>Average ROI in 12 Months</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="about" class="section fade-in">
+        <h2>Why Entrepreneurs Choose Aeroxyz</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎓</div>
+                <h3>Expert Guidance</h3>
+                <p>Our team of AI specialists and business strategists ensure your automation journey is smooth and successful.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>Custom Solutions</h3>
+                <p>No cookie-cutter approaches. Every solution is tailored to your specific business needs and goals.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📈</div>
+                <h3>Proven Results</h3>
+                <p>Track record of helping startups and growing businesses achieve measurable improvements in efficiency and revenue.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="section fade-in">
+        <h2>How We Transform Your Business</h2>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Discovery & Analysis</h3>
+                <p>We dive deep into your business processes to identify automation opportunities and pain points.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Strategy Development</h3>
+                <p>Create a customized AI automation roadmap aligned with your business goals and budget.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Implementation</h3>
+                <p>Deploy cutting-edge AI solutions with minimal disruption to your existing operations.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Optimization & Support</h3>
+                <p>Continuous monitoring, refinement, and support to ensure maximum ROI from your AI investments.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="section">
+        <div class="cta-section fade-in">
+            <h2>Ready to Revolutionize Your Business?</h2>
+            <p>Join hundreds of successful entrepreneurs who've transformed their operations with AI automation.</p>
+            <a href="javascript:void(0)" class="cta-button" onclick="showConsultationForm(event)">Schedule Your Free Consultation</a>
+        </div>
+    </section>
+
+    <!-- Consultation Form Page (Hidden by default) -->
+    <div id="consultation-page" class="consultation-page" style="display: none;">
+        <div class="form-container">
+            <a href="javascript:void(0)" class="back-btn" onclick="hideConsultationForm(event)">← Back to Home</a>
+            
+            <div class="form-header">
+                <h1>Schedule Your Free Consultation</h1>
+                <p>Ready to transform your business with AI automation? Fill out the form below and our team will get back to you within 24 hours to discuss your specific needs and goals.</p>
+            </div>
+
+            <form class="consultation-form" id="consultationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company Name *</label>
+                    <input type="text" id="company" name="company" required placeholder="Your company name">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="industry">Industry *</label>
+                        <select id="industry" name="industry" required>
+                            <option value="">Select your industry</option>
+                            <option value="technology">Technology</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="finance">Finance</option>
+                            <option value="retail">Retail & E-commerce</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="consulting">Consulting</option>
+                            <option value="real-estate">Real Estate</option>
+                            <option value="education">Education</option>
+                            <option value="marketing">Marketing & Advertising</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="companySize">Company Size *</label>
+                        <select id="companySize" name="companySize" required>
+                            <option value="">Select company size</option>
+                            <option value="1-5">1-5 employees</option>
+                            <option value="6-25">6-25 employees</option>
+                            <option value="26-50">26-50 employees</option>
+                            <option value="51-100">51-100 employees</option>
+                            <option value="100+">100+ employees</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="budget">Expected Investment Range</label>
+                    <select id="budget" name="budget">
+                        <option value="">Select budget range</option>
+                        <option value="under-5k">Under $5,000</option>
+                        <option value="5k-15k">$5,000 - $15,000</option>
+                        <option value="15k-50k">$15,000 - $50,000</option>
+                        <option value="50k-100k">$50,000 - $100,000</option>
+                        <option value="100k+">$100,000+</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="challenges">Current Business Challenges *</label>
+                    <textarea id="challenges" name="challenges" rows="4" required placeholder="Describe your current business challenges, pain points, or areas where you'd like to improve efficiency..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="goals">Automation Goals</label>
+                    <textarea id="goals" name="goals" rows="3" placeholder="What specific processes would you like to automate? What are your main goals for AI implementation?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="timeline">Project Timeline</label>
+                    <select id="timeline" name="timeline">
+                        <option value="">When would you like to start?</option>
+                        <option value="asap">As soon as possible</option>
+                        <option value="1-month">Within 1 month</option>
+                        <option value="1-3-months">1-3 months</option>
+                        <option value="3-6-months">3-6 months</option>
+                        <option value="6-months+">6+ months</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">Schedule My Free Consultation</button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+                <h3>🎉 Thank you for your submission!</h3>
+                <p>We've received your information and will get back to you within 24 hours to schedule your free consultation.</p>
+            </div>
+
+            <div class="error-message" id="errorMessage">
+                <h3>❌ Submission Error</h3>
+                <p>There was an issue submitting your form. Please try again or contact us directly.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Support</a>
+                <a href="#">Contact</a>
+            </div>
+            <p>&copy; 2025 Aeroxyz. All rights reserved. Empowering entrepreneurs through AI innovation.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Show consultation form
+        function showConsultationForm(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Showing consultation form');
+            
+            const consultationPage = document.getElementById('consultation-page');
+            if (consultationPage) {
+                consultationPage.style.display = 'flex';
+                consultationPage.scrollIntoView({ behavior: 'smooth' });
+                console.log('Consultation page displayed');
+            } else {
+                console.error('Consultation page not found!');
+            }
+            return false;
+        }
+
+        // Hide consultation form
+        function hideConsultationForm(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Hiding consultation form');
+            document.getElementById('consultation-page').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return false;
+        }
+
+        // Create hidden iframe for form submission
+        function createHiddenIframe() {
+            const existingIframe = document.getElementById('form-submission-iframe');
+            if (existingIframe) {
+                return existingIframe;
+            }
+            
+            const iframe = document.createElement('iframe');
+            iframe.id = 'form-submission-iframe';
+            iframe.name = 'form-submission-iframe';
+            iframe.style.display = 'none';
+            iframe.style.width = '0';
+            iframe.style.height = '0';
+            iframe.style.border = 'none';
+            iframe.style.position = 'absolute';
+            iframe.style.left = '-9999px';
+            document.body.appendChild(iframe);
+            
+            return iframe;
+        }
+
+        // Submit main consultation form
+        window.submitMainForm = function() {
+            console.log('submitMainForm called - using hidden iframe method');
+            
+            // Get all form values
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                company: document.getElementById('company').value,
+                industry: document.getElementById('industry').value,
+                companySize: document.getElementById('companySize').value,
+                budget: document.getElementById('budget').value,
+                challenges: document.getElementById('challenges').value,
+                goals: document.getElementById('goals').value,
+                timeline: document.getElementById('timeline').value,
+                timestamp: new Date().toLocaleString(),
+                source: 'main_form'
+            };
+            
+            // Validate required fields
+            if (!formData.firstName || !formData.lastName || !formData.email || !formData.company || !formData.industry || !formData.companySize || !formData.challenges) {
+                alert('Please fill in all required fields (marked with *)');
+                return;
+            }
+            
+            console.log('Form data collected:', formData);
+            
+            // Update button state
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            // Create or get hidden iframe
+            const iframe = createHiddenIframe();
+            
+            // Create a temporary form to submit through iframe
+            const tempForm = document.createElement('form');
+            tempForm.method = 'POST';
+            tempForm.action = 'https://script.google.com/macros/s/AKfycbyjwKBxnxCaF_VcCICN_g8UmK97yPCzvfKvODXTBFGaDrH_dnAzVQ9AOHWSYVqJVqD_/exec';
+            tempForm.target = 'form-submission-iframe';
+            tempForm.style.display = 'none';
+            
+            // Add all form data as hidden inputs
+            Object.keys(formData).forEach(key => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = formData[key];
+                tempForm.appendChild(input);
+            });
+            
+            // Append form to body and submit
+            document.body.appendChild(tempForm);
+            
+            console.log('Submitting form through hidden iframe...');
+            
+            // Set up a timeout to show success message
+            // Since we can't detect iframe load completion reliably with cross-origin,
+            // we'll assume success after a reasonable delay
+            setTimeout(() => {
+                console.log('Form submission completed (assumed success)');
+                
+                // Show success message and reset form
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('errorMessage').style.display = 'none';
+                document.getElementById('consultationForm').reset();
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                // Clean up temporary form
+                document.body.removeChild(tempForm);
+                
+                // Optional: Remove iframe after some delay to clean up
+                setTimeout(() => {
+                    const iframeToRemove = document.getElementById('form-submission-iframe');
+                    if (iframeToRemove) {
+                        document.body.removeChild(iframeToRemove);
+                    }
+                }, 5000);
+            }, 2000); // 2 second delay for submission
+            
+            // Submit the form
+            tempForm.submit();
+        };
+
+        // Handle form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, setting up form handler');
+            
+            const form = document.getElementById('consultationForm');
+            console.log('Main form found:', form);
+            
+            // Add click handler to main form submit button
+            if (form) {
+                const submitBtn = form.querySelector('.submit-btn');
+                if (submitBtn) {
+                    console.log('Adding click handler to submit button');
+                    
+                    submitBtn.addEventListener('click', function(e) {
+                        e.preventDefault(); // Prevent form submission
+                        console.log('Main submit button clicked via event listener!');
+                        
+                        // Call the submit function
+                        if (window.submitMainForm) {
+                            window.submitMainForm();
+                        } else {
+                            console.error('submitMainForm function not found');
+                        }
+                    });
+                } else {
+                    console.error('Submit button not found in form');
+                }
+            } else {
+                console.error('Main form not found!');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Dynamic counter animation for stats
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current) + (element.textContent.includes('%') ? '%' : 
+                                     element.textContent.includes('+') ? '+' : 
+                                     element.textContent.includes('x') ? 'x' : '');
+            }, 20);
+        }
+
+        // Activate counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-item h3');
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        const number = parseInt(text.replace(/\D/g, ''));
+                        if (number) {
+                            stat.textContent = '0' + text.replace(/\d+/, '');
+                            animateCounter(stat, number);
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Add parallax effect to floating orbs
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const orbs = document.querySelectorAll('.floating-orb');
+            
+            orbs.forEach((orb, index) => {
+                const speed = 0.5 + (index * 0.2);
+                orb.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add navbar background opacity on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const scrolled = window.pageYOffset;
+            
+            if (scrolled > 100) {
+                nav.style.background = 'rgba(10, 10, 15, 0.95)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 15, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>
